@@ -1,0 +1,29 @@
+{
+  "name": "blockport-tokensale",
+  "version": "1.0.0",
+  "description": "Xsure tokensale",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xsure/tokensale.git"
+  },
+  "keywords": [
+    "ethereum",
+    "erc20",
+    "solidity"
+  ],
+  "author": "wslyvh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xsure/tokensale/issues"
+  },
+  "homepage": "https://github.com/Xsure/tokensale#readme",
+  "dependencies": {
+    "json-math": "^2.0.0",
+    "truffle": "^4.0.4",
+    "truffle-hdwallet-provider": "0.0.3"
+  }
+}

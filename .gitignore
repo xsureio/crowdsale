@@ -1,0 +1,10 @@
+node_modules
+build
+zeppelin-unused
+truffle*
+fun.js
+truffle.js
+CrowdsaleWhitelist.sol
+XSureCrowdsale.sol
+crowdsaleWhitelist.js
+crowdsale.js
