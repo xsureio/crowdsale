@@ -1,7 +1,8 @@
-pragma solidity ^0.4.13;
+pragma solidity ^0.4.18;
 
-import '../token/MintableToken.sol';
-import '../math/SafeMath.sol';
+import "../token/MintableToken.sol";
+import "../math/SafeMath.sol";
+
 
 /**
  * @title Crowdsale
@@ -9,7 +10,9 @@ import '../math/SafeMath.sol';
  * Crowdsales have a start and end timestamps, where investors can make
  * token purchases and the crowdsale will assign them tokens based
  * on a token per ETH rate. Funds collected are forwarded to a wallet
- * as they arrive.
+ * as they arrive. The contract requires a MintableToken that will be
+ * minted as contributions arrive, note that the crowdsale contract
+ * must be owner of the token in order to be able to mint it.
  */
 contract Crowdsale {
   using SafeMath for uint256;
@@ -45,16 +48,14 @@ contract Crowdsale {
     require(_endTime >= _startTime);
     require(_rate > 0);
     require(_wallet != address(0));
-
+    
     token = createTokenContract();
     startTime = _startTime;
     endTime = _endTime;
     rate = _rate;
-    wallet = _wallet;
+    wallet = _wallet;   
   }
 
-  // creates the token to be sold.
-  // override this method to have crowdsale of a specific mintable token.
   function createTokenContract() internal returns (MintableToken) {
     return new MintableToken();
   }

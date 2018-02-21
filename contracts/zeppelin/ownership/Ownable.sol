@@ -1,4 +1,4 @@
-pragma solidity ^0.4.13;
+pragma solidity ^0.4.18;
 
 
 /**
@@ -21,7 +21,6 @@ contract Ownable {
     owner = msg.sender;
   }
 
-
   /**
    * @dev Throws if called by any account other than the owner.
    */
@@ -29,7 +28,6 @@ contract Ownable {
     require(msg.sender == owner);
     _;
   }
-
 
   /**
    * @dev Allows the current owner to transfer control of the contract to a newOwner.
