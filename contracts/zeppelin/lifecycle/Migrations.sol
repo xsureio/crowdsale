@@ -1,7 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.13;
 
-import "../ownership/Ownable.sol";
 
+import '../ownership/Ownable.sol';
 
 /**
  * @title Migrations

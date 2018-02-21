@@ -1,6 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.13;
 
-import "./Claimable.sol";
+
+import './Claimable.sol';
 
 
 /**
@@ -24,6 +25,7 @@ contract DelayedClaimable is Claimable {
     end = _end;
     start = _start;
   }
+
 
   /**
    * @dev Allows the pendingOwner address to finalize the transfer, as long as it is called within

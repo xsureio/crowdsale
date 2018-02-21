@@ -1,7 +1,8 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.13;
 
-import "./SafeERC20.sol";
 
+import './ERC20Basic.sol';
+import "../token/SafeERC20.sol";
 
 /**
  * @title TokenTimelock
@@ -18,9 +19,9 @@ contract TokenTimelock {
   address public beneficiary;
 
   // timestamp when token release is enabled
-  uint256 public releaseTime;
+  uint64 public releaseTime;
 
-  function TokenTimelock(ERC20Basic _token, address _beneficiary, uint256 _releaseTime) public {
+  function TokenTimelock(ERC20Basic _token, address _beneficiary, uint64 _releaseTime) public {
     require(_releaseTime > now);
     token = _token;
     beneficiary = _beneficiary;

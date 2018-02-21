@@ -1,15 +1,19 @@
-{"name":"Xsure Token",
+{
+    "name":"Xsure",
     "symbol":"XSR",
-    "maxTokenSupply":6.944e+25,
+    "maxTokenSupply": 170000000e18,
     "decimals":18,
-    "presaleCap":1.6666666666666668e+21,
-    "presaleStartTimestamp":1518708600,
-    "presaleEndTimestamp":1518708900,
-    "presaleRatio":3840,
-    "crowdsaleCap":1.5e+22,
-    "crowdsaleStartTimestamp":1518708960,
-    "crowdsaleEndTimestamp":1518709900,
-    "crowdsaleRatio":2880,
-    "crowdsaleGoal":150000000000000,
-    "companyFundWallet":"0xEcAC02230b1226d3f4b07D1024bCDc0CAB164d0a",
-    "companyTokenVault":"0xf70c20776802D61620dC646EdC994dcc8682549f"}
+
+    "presaleCap":2000e18,
+    "presaleRatio":5000,
+    "presaleStartTimestamp":1519322878,
+    "presaleEndTimestamp":1519422878,
+
+    "crowdsaleCap":20000e18,
+    "crowdsaleRatio":3000,
+    "crowdsaleStartTimestamp":1519522878,
+    "crowdsaleEndTimestamp":1519622878,
+
+    "companyFundWallet":"0x540AE3721c413de1D2E719f767319789dfA03818",
+    "companyTokenVault":"0xeC61F453D512c4d1141c555ACaCe621593Ac455D"
+}

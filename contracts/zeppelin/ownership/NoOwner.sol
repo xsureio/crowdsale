@@ -1,9 +1,8 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.13;
 
 import "./HasNoEther.sol";
 import "./HasNoTokens.sol";
 import "./HasNoContracts.sol";
-
 
 /**
  * @title Base contract for contracts that should not own things.

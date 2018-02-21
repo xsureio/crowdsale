@@ -1,8 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.13;
 
-import "./ERC20Basic.sol";
-import "./ERC20.sol";
-
+import './ERC20Basic.sol';
+import './ERC20.sol';
 
 /**
  * @title SafeERC20

@@ -1,8 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.13;
 
-import "../token/ERC20/MintableToken.sol";
-import "../math/SafeMath.sol";
-
+import '../token/MintableToken.sol';
+import '../math/SafeMath.sol';
 
 /**
  * @title Crowdsale
@@ -10,9 +9,7 @@ import "../math/SafeMath.sol";
  * Crowdsales have a start and end timestamps, where investors can make
  * token purchases and the crowdsale will assign them tokens based
  * on a token per ETH rate. Funds collected are forwarded to a wallet
- * as they arrive. The contract requires a MintableToken that will be
- * minted as contributions arrive, note that the crowdsale contract
- * must be owner of the token in order to be able to mint it.
+ * as they arrive.
  */
 contract Crowdsale {
   using SafeMath for uint256;
@@ -43,18 +40,23 @@ contract Crowdsale {
   event TokenPurchase(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
 
 
-  function Crowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, address _wallet, MintableToken _token) public {
+  function Crowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, address _wallet) public {
     require(_startTime >= now);
     require(_endTime >= _startTime);
     require(_rate > 0);
     require(_wallet != address(0));
-    require(_token != address(0));
 
+    token = createTokenContract();
     startTime = _startTime;
     endTime = _endTime;
     rate = _rate;
     wallet = _wallet;
-    token = _token;
+  }
+
+  // creates the token to be sold.
+  // override this method to have crowdsale of a specific mintable token.
+  function createTokenContract() internal returns (MintableToken) {
+    return new MintableToken();
   }
 
   // fallback function can be used to buy tokens
@@ -70,7 +72,7 @@ contract Crowdsale {
     uint256 weiAmount = msg.value;
 
     // calculate token amount to be created
-    uint256 tokens = getTokenAmount(weiAmount);
+    uint256 tokens = weiAmount.mul(rate);
 
     // update state
     weiRaised = weiRaised.add(weiAmount);
@@ -81,16 +83,6 @@ contract Crowdsale {
     forwardFunds();
   }
 
-  // @return true if crowdsale event has ended
-  function hasEnded() public view returns (bool) {
-    return now > endTime;
-  }
-
-  // Override this method to have a way to add business logic to your crowdsale when buying
-  function getTokenAmount(uint256 weiAmount) internal view returns(uint256) {
-    return weiAmount.mul(rate);
-  }
-
   // send ether to the fund collection wallet
   // override to create custom fund forwarding mechanisms
   function forwardFunds() internal {
@@ -98,10 +90,24 @@ contract Crowdsale {
   }
 
   // @return true if the transaction can buy tokens
-  function validPurchase() internal view returns (bool) {
+  function validPurchase() internal  returns (bool) {
     bool withinPeriod = now >= startTime && now <= endTime;
     bool nonZeroPurchase = msg.value != 0;
     return withinPeriod && nonZeroPurchase;
   }
 
+  // @return true if crowdsale event has started
+  function hasStarted() public constant returns (bool) {
+    return now >= startTime;
+  }
+
+  // @return true if crowdsale event has ended
+  function hasEnded() public view returns (bool) {
+    return now > endTime;
+  }
+
+  // @return current timestamp
+  function currentTime() public constant returns(uint256) { 
+    return now;
+  }
 }

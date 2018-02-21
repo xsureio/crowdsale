@@ -1,7 +1,6 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.13;
 
 import "./Ownable.sol";
-
 
 /**
  * @title Contracts that should not own Contracts
